@@ -22,4 +22,8 @@ export class ProductsComponent implements OnInit {
   onUserClick(){
     this._router.navigate(['/users'])
   }
+  onProductSelect(prod :Iproducts){
+    console.log(prod)
+    this.slectedProductid = prod.pid
+  }
 }

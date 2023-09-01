@@ -1,14 +1,15 @@
 <div class="row">
     <div class="col-sm-4">
         <ul class="list-group">
-            <li class="list-group-item" [routerLink]="['/users', user.id ]"
-                [ngClass]="{active : slectedUser.id === user.id }" *ngFor="let user of usersInfo">
+            <li class="list-group-item" (click)="selectedUserId = user.id" [routerLink]="['/users', user.id ]"
+                [ngClass]="{active : selectedUserId === user.id }" *ngFor="let user of usersInfo">
                 <!-- {{user | json}} -->
                 {{user.username}}
             </li>
         </ul>
     </div>
     <div class="col-sm-8">
+        <router-outlet></router-outlet>
         <!-- <app-user></app-user> -->
     </div>
 </div>

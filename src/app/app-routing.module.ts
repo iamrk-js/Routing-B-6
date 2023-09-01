@@ -8,33 +8,63 @@ import { UserComponent } from "./shared/components/users/user/user.component";
 import { ProductComponent } from "./shared/components/products/product/product.component";
 import { EditProductComponent } from "./shared/components/products/edit-product/edit-product.component";
 import { EdituserComponent } from "./shared/components/users/edituser/edituser.component";
+import { AuthGaurd } from "./shared/services/auth.guard";
+import { LoginComponent } from "./shared/components/login/login.component";
+import { UserroleGuard } from "./shared/services/userrole.guard";
+import { ProductResolverService } from "./shared/services/productResolver.service";
+import { ProductDeactivateGuard } from "./shared/services/product-deactivate.guard";
 
 
 const routes: Routes = [
 
   {
-    path: '', component: DashboardComponent        // localhost:4200
+    path: '', component: LoginComponent,
+    title: "Login",       // localhost:4200
   },
   {
-    path: "users", component: UsersComponent  // locahost:4200/users
+    path: 'home', component: DashboardComponent,
+    title: "Dashboard",       // localhost:4200/home
   },
   {
-    path: "users/:userId", component: UserComponent  // locahost:4200/users
+    path: "users", component: UsersComponent,
+    title: "Users",
+    canActivate: [AuthGaurd],
+    children: [
+      {
+        path: ":userId", component: UserComponent
+      },
+      {
+        path: ":userId/edit", component: EdituserComponent
+      }
+    ]
   },
   {
-    path : "users/:userId/edit" , component : EdituserComponent
+    path: "products", component: ProductsComponent,
+    title: "Products",
+    canActivate: [UserroleGuard],
+    data: {
+      userRole: "admin"
+    },
+    canActivateChild: [AuthGaurd],
+    children: [
+      {
+        path: ":productsId", component: ProductComponent,
+        resolve: { product: ProductResolverService }
+      },
+      {
+        path: ":productsId/edit", component: EditProductComponent,
+        canDeactivate: [ProductDeactivateGuard]
+      }
+    ]
   },
   {
-    path: "products", component: ProductsComponent  // localhost:4200/products
+    path: 'page-not-found', component: PageNotFoundComponent, data: {
+      msg: "Page Not Found !!!"
+    }
   },
   {
-    path: "products/:productsId", component: ProductComponent
-  },
-  {
-    path: "products/:productsId/edit", component: EditProductComponent
+    path: "**", redirectTo: "page-not-found"
   }
-  // { path: "**", redirectTo: 'pagenotfound' },
-  // { path: 'pagenotfound', component: PageNotFoundComponent }
 ]
 
 @NgModule({

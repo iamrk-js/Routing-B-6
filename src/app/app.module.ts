@@ -12,6 +12,7 @@ import { ProductComponent } from './shared/components/products/product/product.c
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { EditProductComponent } from './shared/components/products/edit-product/edit-product.component';
 import { EdituserComponent } from './shared/components/users/edituser/edituser.component';
+import { LoginComponent } from './shared/components/login/login.component';
 
 // localhost:4200/home
 // localhost:4200/users
@@ -31,6 +32,7 @@ import { EdituserComponent } from './shared/components/users/edituser/edituser.c
     PageNotFoundComponent,
     EditProductComponent,
     EdituserComponent,
+    LoginComponent,
 
   ],
   imports: [

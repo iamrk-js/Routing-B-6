@@ -1,0 +1,81 @@
+<div class="main d-flex">
+    <div class="card form">
+        <div class="card-body">
+            <div class="login" *ngIf="isHavingAccount">
+                <h3 class="mb-2">Login</h3>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" 
+                    #username
+                    placeholder="Username" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa-solid fa-at"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control"
+                    #password
+                    placeholder="Password" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-primary" (click)="onLogin(username, password)">Login</button>
+                </div>
+
+
+
+            </div>
+            <div class="signUp" *ngIf="!isHavingAccount">
+                <h3 class="mb-2">Sign Up</h3>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Username" aria-label="Username"
+                        aria-describedby="basic-addon3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fa-solid fa-at"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Password" aria-label="Username"
+                        aria-describedby="basic-addon3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Confirm Password" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-primary">Create Account</button>
+                </div>
+            </div>
+
+            <p *ngIf="isHavingAccount">
+                <a href="javascript:;" (click)="isHavingAccount = !isHavingAccount">
+                    Dont have Account
+                </a>
+            </p>
+            <p *ngIf="!isHavingAccount">
+                <a href="javascript:;" (click)="isHavingAccount = !isHavingAccount">
+                    Already have Account
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
